@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111111;
+  color: white;
+}
+
+.home {
+  max-width: 1000px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.home p {
+  color: #aaaaaa;
+  margin-bottom: 30px;
+}
+
+.home button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.lesson {
+  display: flex;
+  height: 100vh;
+}
+
+.code-panel {
+  width: 65%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.teacher-panel {
+  width: 35%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-left: 1px solid #333333;
+}
+
+.explanation {
+  background: #1b1b1b;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: 200px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.controls button {
+  padding: 10px 15px;
+  cursor: pointer;
+}
