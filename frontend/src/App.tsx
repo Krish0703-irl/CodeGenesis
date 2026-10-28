@@ -1,50 +1,33 @@
 import { useState } from "react";
-import Editor from "@monaco-editor/react";
+
+import Home from "./Home";
+import LessonPlayer from "./LessonPlayer";
+import { deleteLesson, loadLessons, type SavedLesson } from "./storage";
 
 function App() {
-  const [code, setCode] = useState("// Write or paste your C++ code here");
-  const [message, setMessage] = useState("");
+  const [savedLessons, setSavedLessons] = useState<SavedLesson[]>(loadLessons);
+  const [active, setActive] = useState<SavedLesson | null>(null);
 
-async function generateLesson() {
-  const response = await fetch(
-    "http://127.0.0.1:8000/generate-lesson",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        code: code,
-      }),
-    }
-  );
+  function openLesson(saved: SavedLesson) {
+    // Re-read so a lesson reopened from the list resumes its saved progress
+    setActive(loadLessons().find((l) => l.id === saved.id) ?? saved);
+  }
 
-  const data = await response.json();
+  function exitLesson() {
+    setActive(null);
+    setSavedLessons(loadLessons());
+  }
 
-  console.log(data);
-}
+  function removeLesson(id: string) {
+    deleteLesson(id);
+    setSavedLessons(loadLessons());
+  }
 
-  return (
-    <div className="home">
-      <h1>CodeGenesis</h1>
+  if (active) {
+    return <LessonPlayer key={active.id} saved={active} onExit={exitLesson} />;
+  }
 
-      <p>From Finished Code to Understanding</p>
-
-      <Editor
-        height="500px"
-        defaultLanguage="cpp"
-        value={code}
-        onChange={(value) => setCode(value || "")}
-        theme="vs-dark"
-      />
-
-      <button onClick={testBackend}>
-        Teach Me This
-      </button>
-
-      <p>{message}</p>
-    </div>
-  );
+  return <Home savedLessons={savedLessons} onOpen={openLesson} onDelete={removeLesson} />;
 }
 
 export default App;
