@@ -5,12 +5,24 @@ function App() {
   const [code, setCode] = useState("// Write or paste your C++ code here");
   const [message, setMessage] = useState("");
 
-  async function testBackend() {
-    const response = await fetch("http://127.0.0.1:8000/hello");
-    const data = await response.json();
+async function generateLesson() {
+  const response = await fetch(
+    "http://127.0.0.1:8000/generate-lesson",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        code: code,
+      }),
+    }
+  );
 
-    setMessage(data.message);
-  }
+  const data = await response.json();
+
+  console.log(data);
+}
 
   return (
     <div className="home">
