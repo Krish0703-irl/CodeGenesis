@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
 import { generateLesson, getHealth, type Health, type Language } from "./api";
+import RunPanel from "./RunPanel";
 import { LANGUAGES, SAMPLES, monacoLanguage } from "./samples";
 import {
   emptyProgress,
@@ -123,6 +124,8 @@ export default function Home({ savedLessons, onOpen, onDelete }: Props) {
           </button>
           {error && <p className="error">{error}</p>}
         </div>
+
+        <RunPanel code={code} language={language} />
       </section>
 
       {savedLessons.length > 0 && (

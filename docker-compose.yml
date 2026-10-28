@@ -2,7 +2,7 @@ services:
   backend:
     build: ./backend
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     env_file:
       - path: ./backend/.env
         required: false
@@ -15,6 +15,6 @@ services:
       args:
         VITE_API_URL: http://localhost:8000
     ports:
-      - "5173:80"
+      - "127.0.0.1:5173:80"
     depends_on:
       - backend

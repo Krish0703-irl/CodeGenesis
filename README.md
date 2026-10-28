@@ -21,6 +21,8 @@ typing the code and providing voice narration.
 - **Voice explanations** – each step is read aloud using your browser's
   built-in speech
 - **Interactive questions** – a multiple-choice question after every step
+- **Code execution** – run C++, C or Python programs from the home page or
+  at the end of a lesson, with optional input, and see the output or errors
 - **Progress tracking** – your current step, completed steps and quiz answers
   are saved in the browser, so you can resume any lesson later
 - **Offline mode** – with no API key, a built-in rule-based teacher still
@@ -36,6 +38,7 @@ typing the code and providing voice narration.
 ### Backend
 - Python
 - FastAPI
+- g++ / gcc (for running C/C++ code)
 
 ### AI
 - NVIDIA API (default model `meta/llama-3.3-70b-instruct`)
@@ -116,6 +119,19 @@ The frontend reads `VITE_API_URL` (default `http://127.0.0.1:8000`).
 | --- | --- | --- |
 | `GET` | `/health` | Whether an AI provider is configured |
 | `POST` | `/generate-lesson` | Body `{ "code": "...", "language": "cpp" }`, returns the lesson steps |
+| `POST` | `/run` | Body `{ "code": "...", "language": "cpp", "stdin": "" }`, compiles and runs the code |
+
+## Code execution safety
+
+`/run` compiles and runs whatever code it receives **on the machine running
+the backend**. Each run gets a temporary folder that is deleted afterwards,
+a 5 second CPU/time limit, a 512 MB memory limit and capped output, but it
+is not a full sandbox.
+
+That is fine for running CodeGenesis on your own computer. If anyone else
+can reach the backend, run it in Docker (`docker compose up`), which runs
+the code as a non-root user inside a container, and never expose port 8000
+to the internet.
 
 ## Tests
 

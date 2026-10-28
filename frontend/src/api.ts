@@ -61,6 +61,30 @@ export async function generateLesson(
   return response.json();
 }
 
+export type RunResult = {
+  compile_output: string;
+  stdout: string;
+  stderr: string;
+  exit_code: number | null;
+  timed_out: boolean;
+};
+
+export const RUNNABLE: Language[] = ["cpp", "c", "python"];
+
+export async function runCode(
+  code: string,
+  language: Language,
+  stdin: string,
+): Promise<RunResult> {
+  const response = await fetch(`${API_URL}/run`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ code, language, stdin }),
+  });
+  if (!response.ok) throw new Error(await readError(response));
+  return response.json();
+}
+
 export async function getHealth(): Promise<Health> {
   const response = await fetch(`${API_URL}/health`);
   if (!response.ok) throw new Error(await readError(response));

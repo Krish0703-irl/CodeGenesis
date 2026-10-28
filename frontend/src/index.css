@@ -394,6 +394,73 @@ button.danger:hover {
   font-size: 17px;
 }
 
+.run-panel {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.run-input {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.run-input textarea {
+  font-family: ui-monospace, monospace;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  resize: vertical;
+}
+
+.run-button {
+  justify-self: start;
+  border-color: var(--good);
+  color: var(--good);
+}
+
+.run-output pre {
+  margin: 0 0 8px;
+  padding: 12px;
+  background: #0a0a0a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.run-output pre.stderr {
+  color: var(--bad);
+}
+
+.run-output pre.muted {
+  color: var(--muted);
+}
+
+.run-status {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.run-status.good {
+  color: var(--good);
+}
+
+.run-status.bad {
+  color: var(--bad);
+}
+
 .overlay {
   position: fixed;
   inset: 0;

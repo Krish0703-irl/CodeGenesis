@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Editor, { type OnMount } from "@monaco-editor/react";
 
 import QuizCard from "./QuizCard";
+import RunPanel from "./RunPanel";
 import { monacoLanguage } from "./samples";
 import { emptyProgress, saveProgress, type Progress, type SavedLesson } from "./storage";
 import { useSpeech } from "./useSpeech";
@@ -281,6 +282,8 @@ export default function LessonPlayer({ saved, onExit }: Props) {
                 You finished {progress.completed.length} of {steps.length} steps
                 {quizSteps.length > 0 && ` and got ${correct} of ${quizSteps.length} questions right`}.
               </p>
+              <h3>Try running it</h3>
+              <RunPanel code={fullCode} language={lesson.language} />
               <div className="nav">
                 <button onClick={copyCode}>{copied ? "Copied!" : "Copy code"}</button>
                 <button onClick={restart}>Restart lesson</button>
