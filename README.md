@@ -41,7 +41,7 @@ typing the code and providing voice narration.
 - g++ / gcc (for running C/C++ code)
 
 ### AI
-- NVIDIA API (default model `meta/llama-3.3-70b-instruct`)
+- NVIDIA API (default model `nvidia/llama-3.1-nemotron-70b-instruct`)
 - Google Gemini API (default model `gemini-2.5-flash`)
 
 ### Infrastructure
@@ -106,7 +106,7 @@ All settings live in `backend/.env`:
 | --- | --- | --- |
 | `LLM_PROVIDER` | `auto` | `auto` uses NVIDIA if its key is set, else Gemini. Also `nvidia`, `gemini`, `offline` |
 | `NVIDIA_API_KEY` | | Your NVIDIA API key |
-| `NVIDIA_MODEL` | `meta/llama-3.3-70b-instruct` | Any chat model from build.nvidia.com |
+| `NVIDIA_MODEL` | `nvidia/llama-3.1-nemotron-70b-instruct` | Any chat model from build.nvidia.com |
 | `GEMINI_API_KEY` | | Your Gemini API key |
 | `GEMINI_MODEL` | `gemini-2.5-flash` | Any Gemini model |
 | `CORS_ORIGINS` | `http://localhost:5173,http://127.0.0.1:5173` | Frontend URLs allowed to call the API |

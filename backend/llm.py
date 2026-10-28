@@ -43,8 +43,9 @@ def _user_prompt(code: str, language: str) -> str:
 
 def extract_json(text: str) -> dict:
     """Parse a JSON object out of a model reply, tolerating fences and extra prose."""
-    text = text.strip()
-    fenced = re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
+    # Reasoning models may think out loud before answering
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
+    fenced =re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
     if fenced:
         text = fenced.group(1).strip()
     try:

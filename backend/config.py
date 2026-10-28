@@ -13,7 +13,7 @@ def _env(name: str, default: str = "") -> str:
 LLM_PROVIDER = _env("LLM_PROVIDER", "auto").lower()
 
 NVIDIA_API_KEY = _env("NVIDIA_API_KEY")
-NVIDIA_MODEL = _env("NVIDIA_MODEL", "meta/llama-3.3-70b-instruct")
+NVIDIA_MODEL = _env("NVIDIA_MODEL", "nvidia/llama-3.1-nemotron-70b-instruct")
 NVIDIA_BASE_URL = _env("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
 
 GEMINI_API_KEY = _env("GEMINI_API_KEY")

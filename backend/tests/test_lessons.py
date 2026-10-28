@@ -138,6 +138,7 @@ def test_ai_failure_falls_back_to_offline(monkeypatch):
         '{"steps": [1]}',
         '```json\n{"steps": [1]}\n```',
         'Sure! Here is the lesson:\n{"steps": [1]}\nEnjoy.',
+        '<think>Maybe {"steps": []}? No.</think>\n{"steps": [1]}',
     ],
 )
 def test_extract_json_tolerates_wrapping(reply):
